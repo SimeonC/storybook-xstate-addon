@@ -1,5 +1,7 @@
 # xState Storybook Addon
 
+![](./preview.png)
+
 To use this in storybook simply add `addons: ["storybook-xstate-addon/preset"]` to your storybook config.
 
 If you wish to use the Inspector as the main story itself, simply use the following snippet.

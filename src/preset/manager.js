@@ -1,7 +1,7 @@
 import { addons, types } from "@storybook/addons";
 import { AddonPanel } from "@storybook/components";
 
-import { ADDON_ID, PANEL_ID, INSPECT_ID } from "../constants";
+import { ADDON_ID, PANEL_ID, INSPECT_ID } from "./constants";
 
 // give a unique name for the panel
 const XStateInspector = () => {
