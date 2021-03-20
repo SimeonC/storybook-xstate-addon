@@ -1,39 +1,28 @@
 import React from "react";
-import { Button } from "./Button";
+import { ConfirmDeleteButton, confirmMachine } from "./Button";
+import { useMachine } from "@xstate/react";
+import { RenderMachine } from "../src/RenderMachine";
 
 export default {
-  title: "Example/Button",
-  component: Button,
-  parameters: {
-    myAddonParameter: `
-<MyComponent boolProp scalarProp={1} complexProp={{ foo: 1, bar: '2' }}>
-  <SomeOtherComponent funcProp={(a) => a.id} />
-</MyComponent>
-`,
-  },
+  title: "Example/ConfirmDeleteButton",
+  component: ConfirmDeleteButton,
 };
 
-const Template = (args) => <Button {...args} />;
+const Template = (args) => <ConfirmDeleteButton {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Button",
+export const Button = Template.bind({});
+Button.args = {
+  onDelete: () =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 2e3);
+    }),
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: "Button",
+export const MachineOnly = () => {
+  useMachine(confirmMachine);
+  return null;
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: "large",
-  label: "Button",
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: "small",
-  label: "Button",
-};
+export const MachinePreview = () => <RenderMachine machine={confirmMachine} />;

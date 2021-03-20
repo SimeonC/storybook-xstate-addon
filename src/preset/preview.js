@@ -1,14 +1,51 @@
-/**
- * A decorator is a way to wrap a story in extra “rendering” functionality. Many addons define decorators
- * in order to augment stories:
- * - with extra rendering
- * - gather details about how a story is rendered
- *
- * When writing stories, decorators are typically used to wrap stories with extra markup or context mocking.
- *
- * https://storybook.js.org/docs/react/writing-stories/decorators#gatsby-focus-wrapper
- */
-import { withGlobals } from "../withGlobals";
-import { withRoundTrip } from "../withRoundTrip";
+/* eslint-env browser */
+import { createPortal } from "react-dom";
+import { INSPECT_ID } from "./constants";
+import * as React from "react";
+import { inspect } from "@xstate/inspect";
+import { Interpreter } from "xstate";
 
-export const decorators = [withGlobals, withRoundTrip];
+export const withGlobals = (StoryFn, context) => {
+  const iframeRef = React.useRef();
+
+  Interpreter.defaultOptions.devTools = true;
+
+  React.useEffect(() => {
+    function handler(event) {
+      if (typeof event.data !== "object" || !"type" in event.data) return;
+      window.postMessage(event.data);
+    }
+    window.parent.addEventListener("message", handler);
+    return () => {
+      window.parent.removeEventListener("message", handler);
+    };
+  }, []);
+
+  return (
+    <>
+      {createPortal(
+        <iframe
+          style={{ width: "100%", height: "calc(100% - 4px)", border: 0 }}
+          ref={(iframe) => {
+            if (iframeRef.current || iframeRef.current === iframe) return;
+            iframeRef.current = iframe;
+            iframe.parentElement.childNodes.forEach((node) => {
+              if (node !== iframe) {
+                node.remove();
+              }
+            });
+            Interpreter.defaultOptions.devTools = false;
+            inspect({
+              iframe,
+            });
+            Interpreter.defaultOptions.devTools = true;
+          }}
+        />,
+        window.parent.document.querySelector(`#${INSPECT_ID}`)
+      )}
+      {StoryFn(context)}
+    </>
+  );
+};
+
+export const decorators = [withGlobals];

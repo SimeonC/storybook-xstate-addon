@@ -1,54 +1,77 @@
-import React from "react";
-import PropTypes from "prop-types";
 import "./button.css";
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary";
+import { useMachine } from "@xstate/react";
+import { createMachine } from "xstate";
+import * as React from "react";
+
+export const confirmMachine = createMachine({
+  id: "confirm-delete-button",
+  initial: "idle",
+  states: {
+    idle: {
+      on: { CLICK: "confirming" },
+    },
+    confirming: {
+      activities: "pageClickHandler",
+      on: {
+        CLICK: "deleting",
+        CANCEL: "idle",
+      },
+    },
+    deleting: {
+      invoke: {
+        src: "onDelete",
+        onDone: "idle",
+        onError: "idle",
+      },
+    },
+  },
+});
+
+export function ConfirmDeleteButton({ onDelete }) {
+  const [state, dispatch] = useMachine(confirmMachine, {
+    services: {
+      onDelete,
+    },
+    activities: {
+      pageClickHandler: () => {
+        function clickHandler() {
+          dispatch({ type: "CANCEL" });
+        }
+        document.body.addEventListener("click", clickHandler);
+        return () => {
+          document.body.removeEventListener("click", clickHandler);
+        };
+      },
+    },
+  });
+  const classes = ["storybook-button", "storybook-button--medium"];
+  if (state.matches("idle")) {
+    classes.push("storybook-button--primary");
+  } else {
+    classes.push("storybook-button--secondary");
+  }
+
   return (
     <button
       type="button"
-      className={["storybook-button", `storybook-button--${size}`, mode].join(
-        " "
-      )}
-      style={backgroundColor && { backgroundColor }}
-      {...props}
+      onClick={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        dispatch({ type: "CLICK" });
+      }}
+      className={classes.join(" ")}
     >
-      {label}
+      {(() => {
+        switch (true) {
+          case state.matches("confirming"):
+            return "Confirm";
+          case state.matches("deleting"):
+            return "Deleting...";
+          default:
+            return "Delete";
+        }
+      })()}
     </button>
   );
-};
-
-Button.propTypes = {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary: PropTypes.bool,
-  /**
-   * What background color to use
-   */
-  backgroundColor: PropTypes.string,
-  /**
-   * How large should the button be?
-   */
-  size: PropTypes.oneOf(["small", "medium", "large"]),
-  /**
-   * Button contents
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * Optional click handler
-   */
-  onClick: PropTypes.func,
-};
-
-Button.defaultProps = {
-  backgroundColor: null,
-  primary: false,
-  size: "medium",
-  onClick: undefined,
-};
+}
