@@ -1,3 +1,15 @@
+# v0.0.3 (Sat Mar 20 2021)
+
+#### ⚠️ Pushed to `main`
+
+- fix preset import and add screenshot to readme (simeon@tablecheck.com)
+
+#### Authors: 1
+
+- Simeon Cheeseman (simeon@tablecheck.com)
+
+---
+
 # v0.0.2 (Sat Mar 20 2021)
 
 #### ⚠️ Pushed to `main`
