@@ -1,3 +1,15 @@
+# v0.0.4 (Sat Mar 20 2021)
+
+#### ⚠️ Pushed to `main`
+
+- fix package name (simeon@tablecheck.com)
+
+#### Authors: 1
+
+- Simeon Cheeseman (simeon@tablecheck.com)
+
+---
+
 # v0.0.3 (Sat Mar 20 2021)
 
 #### ⚠️ Pushed to `main`
