@@ -1,3 +1,15 @@
+# v0.0.2 (Sat Mar 20 2021)
+
+#### ⚠️ Pushed to `main`
+
+- Support importing RenderMachine and update readme (simeon@tablecheck.com)
+
+#### Authors: 1
+
+- Simeon Cheeseman (simeon@tablecheck.com)
+
+---
+
 # v0.0.1 (Sat Mar 20 2021)
 
 #### ⚠️ Pushed to `main`
