@@ -4,8 +4,9 @@
   "description": "Storybook addon for displaying xstate inspector inside storybook",
   "keywords": [
     "storybook-addons",
-    "style",
-    "test"
+    "xstate",
+    "@xstate/inspect",
+    "devtools"
   ],
   "repository": {
     "type": "git",
@@ -75,8 +76,5 @@
       "angular"
     ],
     "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
-  },
-  "dependencies": {
-    "@xstate/viz": "0.3.4"
   }
 }
