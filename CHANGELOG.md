@@ -1,3 +1,19 @@
+# v0.0.6 (Sat Mar 20 2021)
+
+#### 🐛 Bug Fix
+
+- Update package.json [#5](https://github.com/SimeonC/storybook-xstate-addon/pull/5) ([@SimeonC](https://github.com/SimeonC))
+
+#### ⚠️ Pushed to `main`
+
+- Fix workflows ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v0.0.5 (Sat Mar 20 2021)
 
 #### ⚠️ Pushed to `main`
