@@ -1,5 +1,5 @@
 {
-  "name": "storybook-addon-kit",
+  "name": "storybook-xstate-addon",
   "version": "0.0.3",
   "description": "Storybook addon for displaying xstate inspector inside storybook",
   "keywords": [
