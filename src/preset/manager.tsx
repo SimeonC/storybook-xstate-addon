@@ -1,5 +1,6 @@
 import { addons, types } from "@storybook/addons";
 import { AddonPanel } from "@storybook/components";
+import React from "react";
 
 import { ADDON_ID, PANEL_ID, INSPECT_ID } from "./constants";
 
@@ -13,12 +14,12 @@ const XStateInspector = () => {
   );
 };
 
-addons.register(ADDON_ID, (api) => {
+addons.register(ADDON_ID, () => {
   addons.add(PANEL_ID, {
     type: types.PANEL,
     title: "xState Inspector",
     render: ({ active, key }) => (
-      <AddonPanel active={active} key={key}>
+      <AddonPanel active={!!active} key={key}>
         <XStateInspector />
       </AddonPanel>
     ),

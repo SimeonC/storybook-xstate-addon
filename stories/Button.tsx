@@ -4,37 +4,35 @@ import { useMachine } from "@xstate/react";
 import { createMachine } from "xstate";
 import * as React from "react";
 
-export const confirmMachine = createMachine({
-  id: "confirm-delete-button",
-  initial: "idle",
-  states: {
-    idle: {
-      on: { CLICK: "confirming" },
-    },
-    confirming: {
-      activities: "pageClickHandler",
-      on: {
-        CLICK: "deleting",
-        CANCEL: "idle",
+export const confirmMachine = createMachine(
+  {
+    id: "confirm-delete-button",
+    initial: "idle",
+    states: {
+      idle: {
+        on: { CLICK: "confirming" },
       },
-    },
-    deleting: {
-      invoke: {
-        src: "onDelete",
-        onDone: "idle",
-        onError: "idle",
+      confirming: {
+        invoke: {
+          src: "pageClickHandler",
+        },
+        on: {
+          CLICK: "deleting",
+          CANCEL: "idle",
+        },
+      },
+      deleting: {
+        invoke: {
+          src: "onDelete",
+          onDone: "idle",
+          onError: "idle",
+        },
       },
     },
   },
-});
-
-export function ConfirmDeleteButton({ onDelete }) {
-  const [state, dispatch] = useMachine(confirmMachine, {
+  {
     services: {
-      onDelete,
-    },
-    activities: {
-      pageClickHandler: () => {
+      pageClickHandler: () => (dispatch) => {
         function clickHandler() {
           dispatch({ type: "CANCEL" });
         }
@@ -43,6 +41,18 @@ export function ConfirmDeleteButton({ onDelete }) {
           document.body.removeEventListener("click", clickHandler);
         };
       },
+    },
+  }
+);
+
+export function ConfirmDeleteButton({
+  onDelete,
+}: {
+  onDelete(): Promise<unknown>;
+}) {
+  const [state, dispatch] = useMachine(confirmMachine, {
+    services: {
+      onDelete,
     },
   });
   const classes = ["storybook-button", "storybook-button--medium"];

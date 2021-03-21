@@ -9,7 +9,7 @@ If you wish to use the Inspector as the main story itself, simply use the follow
 ```jsx
 import { MachinePreview } from 'storybook-xstate-addon';
 
-export const MachinePreview = () => <RenderMachine machine={confirmMachine} options={...optionsToUseMachine} />;
+export const MachinePreview = () => <RenderMachine machine={confirmMachine} options={...optionsToUseMachine} events={[...events]} />;
 ```
 
 ### Development scripts
