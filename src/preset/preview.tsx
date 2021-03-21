@@ -5,15 +5,13 @@ import * as React from "react";
 import { inspect, createDevTools } from "@xstate/inspect";
 import { Interpreter } from "xstate";
 import { eventsHandler } from "../eventsHandler";
+import { getGlobal } from "xstate/lib/devTools";
 
 interface HandlerEvent extends Event {
   data?: any;
 }
 
-export const withXstateInspector = (
-  StoryFn: (arg0: any) => any,
-  context: any
-) => {
+export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
   const iframeRef = React.useRef<HTMLIFrameElement | null>(null);
 
   Interpreter.defaultOptions.devTools = true;
@@ -51,20 +49,21 @@ export const withXstateInspector = (
             Interpreter.defaultOptions.devTools = false;
             const devTools = createDevTools();
             devTools.onRegister((newService) => {
-              if (
-                context.parameters?.xstate &&
-                context.parameters?.xstate[newService.id]
-              ) {
-                setTimeout(() => {
-                  eventsHandler(
-                    newService,
-                    context.parameters.xstate[newService.id]
-                  );
-                });
+              if (context.parameters?.xstate) {
+                const { events } =
+                  context.parameters.xstate[newService.id] || {};
+                if (events) {
+                  setTimeout(() => {
+                    eventsHandler(newService, events);
+                  });
+                }
               }
             });
-            // @ts-ignore
-            globalThis.__xstate__ = devTools;
+            const global = getGlobal();
+            if (global) {
+              // @ts-ignore
+              global.__xstate__ = devTools;
+            }
             inspect({
               iframe,
               devTools,
@@ -77,6 +76,6 @@ export const withXstateInspector = (
       {StoryFn(context)}
     </>
   );
-};
+}
 
 export const decorators = [withXstateInspector];

@@ -1,11 +1,14 @@
 {
+  "include": ["src/**/*"],
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "jsx": "react",
+    "jsx": "preserve",
+    "outDir": "./dist",
     "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
+    "declarationMap": false,
+    "emitDeclarationOnly": true,
+    "sourceMap": false,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

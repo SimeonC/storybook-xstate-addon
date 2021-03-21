@@ -4,6 +4,27 @@
 
 To use this in storybook simply add `addons: ["storybook-xstate-addon/preset"]` to your storybook config.
 
+Additionally you can send events to a machine by id when it is registered by adding the `xstate` parameter.
+
+```jsx
+StoryComponent.parameters = {
+  xstate: {
+    machine_id1: {
+      events: "event",
+    },
+    machine_id2: {
+      events: { type: "event" },
+    },
+    machine_id3: {
+      events: [{ type: "event1" }, { type: "event2" }],
+    },
+    machine_id4: {
+      events: (state) => "event",
+    },
+  },
+};
+```
+
 If you wish to use the Inspector as the main story itself, simply use the following snippet.
 
 ```jsx

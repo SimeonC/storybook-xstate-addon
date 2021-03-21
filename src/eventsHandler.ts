@@ -40,20 +40,6 @@ export function eventsHandler<
         });
       });
       return;
-    case "object":
-      if (Array.isArray(events)) {
-        const popStack = [...events];
-        const event = popStack.shift();
-        if (event) service.send(event);
-        service.onTransition(() => {
-          setTimeout(() => {
-            const event = popStack.shift();
-            if (event) service.send(event);
-          });
-        });
-        return;
-      }
-    case "string":
     default:
       service.send(events);
   }

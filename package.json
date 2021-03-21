@@ -24,10 +24,13 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf ./dist",
-    "tsc": "tsc --noEmit",
-    "build": "babel ./src --out-dir ./dist --extensions .ts,.tsx,.js,.jsx",
+    "tsc": "tsc",
+    "build": "tsc -d && npm run build:js && npm run build:celan",
+    "build:js": "babel ./src --out-dir ./dist --extensions .ts,.tsx,.js,.jsx && rimraf dist/{**/*,*}.d.js",
+    "build:js:clean": "rimraf dist/{**/*,*}.d.js",
+    "build:watch": "babel ./src --out-dir ./dist --extensions .ts,.tsx,.js,.jsx --watch",
     "storybook": "start-storybook -p 6006",
-    "start": "concurrently \"npm run storybook -- --no-manager-cache --quiet\" \"npm run build -- --watch\"",
+    "start": "concurrently \"npm run storybook -- --no-manager-cache --quiet\" \"npm run build:watch\"",
     "build-storybook": "build-storybook",
     "release": "npm run build && auto shipit"
   },
