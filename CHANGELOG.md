@@ -1,3 +1,15 @@
+# v0.0.7 (Sun Mar 21 2021)
+
+#### ⚠️ Pushed to `main`
+
+- Should have fixed the issues with demo page (simeon@tablecheck.com)
+
+#### Authors: 1
+
+- Simeon Cheeseman (simeon@tablecheck.com)
+
+---
+
 # v0.0.6 (Sat Mar 20 2021)
 
 #### 🐛 Bug Fix
