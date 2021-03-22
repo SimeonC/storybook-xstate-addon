@@ -1,3 +1,17 @@
+# v0.1.0 (Mon Mar 22 2021)
+
+#### 🚀 Enhancement
+
+- Fix event type to include undefined [#7](https://github.com/SimeonC/storybook-xstate-addon/pull/7) ([@SimeonC](https://github.com/SimeonC))
+- Fix some events being duplicated [#7](https://github.com/SimeonC/storybook-xstate-addon/pull/7) ([@SimeonC](https://github.com/SimeonC))
+- Support repeatable events [#7](https://github.com/SimeonC/storybook-xstate-addon/pull/7) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v0.0.8 (Mon Mar 22 2021)
 
 #### ⚠️ Pushed to `main`
