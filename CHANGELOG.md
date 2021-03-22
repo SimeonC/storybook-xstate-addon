@@ -1,3 +1,16 @@
+# v0.0.8 (Mon Mar 22 2021)
+
+#### ⚠️ Pushed to `main`
+
+- Correct package scripts (simeon@tablecheck.com)
+- Fix typescript build and some other definitions. (simeon@tablecheck.com)
+
+#### Authors: 1
+
+- Simeon Cheeseman (simeon@tablecheck.com)
+
+---
+
 # v0.0.7 (Sun Mar 21 2021)
 
 #### ⚠️ Pushed to `main`
