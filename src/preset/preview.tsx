@@ -50,11 +50,16 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
             const devTools = createDevTools();
             devTools.onRegister((newService) => {
               if (context.parameters?.xstate) {
-                const { events } =
+                const { events, delay, shouldRepeatEvents } =
                   context.parameters.xstate[newService.id] || {};
                 if (events) {
                   setTimeout(() => {
-                    eventsHandler(newService, events);
+                    eventsHandler(
+                      newService,
+                      events,
+                      delay,
+                      shouldRepeatEvents
+                    );
                   });
                 }
               }

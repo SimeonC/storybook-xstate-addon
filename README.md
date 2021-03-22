@@ -4,7 +4,9 @@
 
 To use this in storybook simply add `addons: ["storybook-xstate-addon/preset"]` to your storybook config.
 
-Additionally you can send events to a machine by id when it is registered by adding the `xstate` parameter.
+Additionally, you can send events to a machine by id when it is registered by adding the `xstate` parameter.
+
+For more example usages see [./stories/Button.stories.tsx] and [./stories/Machines.stories.tsx].
 
 ```jsx
 StoryComponent.parameters = {
@@ -20,6 +22,11 @@ StoryComponent.parameters = {
     },
     machine_id4: {
       events: (state) => "event",
+    },
+    machine_id5: {
+      events: ["event1", "event2"],
+      delay: 2.5e3, // milliseconds to delay before sending the next event
+      shouldRepeatEvents: true, // for looping event sequences
     },
   },
 };

@@ -8,7 +8,10 @@ export default {
   component: ConfirmDeleteButton,
 };
 
-const Template: Story<ComponentProps<typeof ConfirmDeleteButton>> = (args) => (
+const Template: Story<ComponentProps<typeof ConfirmDeleteButton>> = ({
+  onDelete,
+  ...args
+}) => (
   <ConfirmDeleteButton onDelete={() => new Promise<void>(() => {})} {...args} />
 );
 
@@ -26,6 +29,17 @@ export const ButtonWithEvents = Template.bind({});
 ButtonWithEvents.parameters = {
   xstate: {
     [confirmMachine.id]: { events: [{ type: "CLICK" }] },
+  },
+};
+
+export const ButtonWithRepeatEvents = Template.bind({});
+ButtonWithRepeatEvents.parameters = {
+  xstate: {
+    [confirmMachine.id]: {
+      events: ["CLICK", "CLICK", "done.invoke.onDelete"],
+      delay: 2.5e3,
+      shouldRepeatEvents: true,
+    },
   },
 };
 
