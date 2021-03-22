@@ -25,8 +25,8 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "tsc": "tsc",
-    "build": "tsc -d && npm run build:js && npm run build:celan",
-    "build:js": "babel ./src --out-dir ./dist --extensions .ts,.tsx,.js,.jsx && rimraf dist/{**/*,*}.d.js",
+    "build": "tsc -d && npm run build:js && npm run build:js:clean",
+    "build:js": "babel ./src --out-dir ./dist --extensions .ts,.tsx,.js,.jsx",
     "build:js:clean": "rimraf dist/{**/*,*}.d.js",
     "build:watch": "babel ./src --out-dir ./dist --extensions .ts,.tsx,.js,.jsx --watch",
     "storybook": "start-storybook -p 6006",
