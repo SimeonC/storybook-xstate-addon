@@ -31,9 +31,7 @@ export function eventsHandler<
   if (!events) return;
   switch (typeof events) {
     case "function":
-      Promise.resolve(events(service.state)).then((event) => {
-        if (event) service.send(event);
-      });
+      // this should trigger on the `xstate.init` event
       service.onTransition((state) => {
         setTimeout(() => {
           Promise.resolve(events(state)).then((event) => {
