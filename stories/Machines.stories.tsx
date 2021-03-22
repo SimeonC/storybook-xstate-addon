@@ -38,3 +38,49 @@ export const EventsStringArray = () => (
     events={["CLICK", "CLICK"]}
   />
 );
+export const RepeatedEventsArrayWithDelay = () => (
+  <RenderMachine
+    machine={confirmMachine}
+    options={{ services: { onDelete: () => new Promise(() => {}) } }}
+    events={["CLICK", "CLICK", "done.invoke.onDelete"]}
+    delay={2.5e3}
+    shouldRepeatEvents
+  />
+);
+export const EventsFunction = () => (
+  <RenderMachine
+    machine={confirmMachine}
+    options={{ services: { onDelete: () => new Promise(() => {}) } }}
+    events={(state) =>
+      new Promise((resolve) =>
+        setTimeout(() => {
+          switch (true) {
+            case state.matches("idle"):
+              return resolve("CLICK");
+            case state.matches("confirming"):
+              return resolve("CLICK");
+            case state.matches("deleting"):
+              return resolve("done.invoke.onDelete");
+          }
+        }, 2.5e3)
+      )
+    }
+  />
+);
+export const EventsFunctionWithDelay = () => (
+  <RenderMachine
+    machine={confirmMachine}
+    options={{ services: { onDelete: () => new Promise(() => {}) } }}
+    events={(state) => {
+      switch (true) {
+        case state.matches("idle"):
+          return "CLICK";
+        case state.matches("confirming"):
+          return "CLICK";
+        case state.matches("deleting"):
+          return "done.invoke.onDelete";
+      }
+    }}
+    delay={2.5e3}
+  />
+);

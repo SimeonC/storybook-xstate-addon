@@ -24,7 +24,9 @@ export function eventsHandler<
   }
 >(
   service: Interpreter<TContext, any, TEvent, TTypestate>,
-  events?: EventParam<TContext, TEvent, TTypestate>
+  events?: EventParam<TContext, TEvent, TTypestate>,
+  delay: number = 0,
+  shouldRepeat?: boolean
 ) {
   if (!events) return;
   switch (typeof events) {
@@ -37,9 +39,23 @@ export function eventsHandler<
           Promise.resolve(events(state)).then((event) => {
             if (event) service.send(event);
           });
-        });
+        }, delay);
       });
       return;
+    case "object":
+      if (delay && Array.isArray(events)) {
+        const popStack = [...events];
+        service.onTransition(() => {
+          setTimeout(() => {
+            const event = popStack.shift();
+            if (event) service.send(event);
+            if (!popStack.length && shouldRepeat) {
+              popStack.push(...events);
+            }
+          }, delay);
+        });
+        return;
+      }
     default:
       service.send(events);
   }

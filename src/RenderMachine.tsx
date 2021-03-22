@@ -18,13 +18,16 @@ interface Props<
   TTypestate extends Typestate<TContext> = {
     value: any;
     context: TContext;
-  }
+  },
+  Events = EventParam<TContext, TEvent, TTypestate>
 > {
   machine: StateMachine<TContext, any, TEvent, TTypestate>;
   options?: Partial<InterpreterOptions> &
     Partial<UseMachineOptions<TContext, TEvent>> &
     Partial<MachineOptions<TContext, TEvent>>;
-  events?: EventParam<TContext, TEvent, TTypestate>;
+  events?: Events;
+  delay?: number;
+  shouldRepeatEvents?: Events extends Array<unknown> ? boolean : never;
 }
 
 export function RenderMachine<
@@ -34,12 +37,18 @@ export function RenderMachine<
     value: any;
     context: TContext;
   }
->({ machine, options, events }: Props<TContext, TEvent, TTypestate>) {
+>({
+  machine,
+  options,
+  events,
+  delay,
+  shouldRepeatEvents,
+}: Props<TContext, TEvent, TTypestate>) {
   const iframeRef = React.useRef<HTMLIFrameElement | null>();
   const [, , service] = useMachine(machine, { ...options, devTools: true });
   React.useEffect(() => {
     if (events) {
-      eventsHandler(service, events);
+      eventsHandler(service, events, delay, shouldRepeatEvents);
     }
   }, []);
   return (
