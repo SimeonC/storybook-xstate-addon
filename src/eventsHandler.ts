@@ -13,7 +13,11 @@ export type EventParam<
   | (TEvent["type"] | TEvent)[]
   | ((
       state: State<TContext, TEvent, any, TTypestate>
-    ) => TEvent | TEvent["type"] | Promise<TEvent | TEvent["type"]>);
+    ) =>
+      | undefined
+      | TEvent
+      | TEvent["type"]
+      | Promise<undefined | TEvent | TEvent["type"]>);
 
 export function eventsHandler<
   TContext,
