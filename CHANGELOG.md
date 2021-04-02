@@ -1,3 +1,15 @@
+# v1.0.3 (Fri Apr 02 2021)
+
+#### 🐛 Bug Fix
+
+- Add RenderMachine types to files so it’s published to npm [#13](https://github.com/SimeonC/storybook-xstate-addon/pull/13) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.0.2 (Fri Apr 02 2021)
 
 #### 🐛 Bug Fix
