@@ -18,7 +18,7 @@
   "files": [
     "dist/**/*",
     "README.md",
-    "index.js",
+    "RenderMachine.js",
     "preset.js"
   ],
   "types": "dist/index.d.ts",
