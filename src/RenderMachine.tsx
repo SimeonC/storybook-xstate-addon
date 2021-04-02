@@ -8,6 +8,7 @@ import {
 } from "xstate";
 import { inspect } from "@xstate/inspect";
 import * as React from "react";
+import { unmountComponentAtNode } from "react-dom";
 import { useMachine } from "@xstate/react";
 import { UseMachineOptions } from "@xstate/react/lib/useMachine";
 import { EventParam, eventsHandler } from "./eventsHandler";
@@ -59,7 +60,7 @@ export function RenderMachine<
         iframeRef.current = iframe;
         iframe.parentElement.childNodes.forEach((node) => {
           if (node !== iframe) {
-            node.remove();
+            unmountComponentAtNode(node as Element);
           }
         });
         Interpreter.defaultOptions.devTools = false;
