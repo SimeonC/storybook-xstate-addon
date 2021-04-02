@@ -35,7 +35,7 @@ StoryComponent.parameters = {
 If you wish to use the Inspector as the main story itself, simply use the following snippet.
 
 ```jsx
-import { MachinePreview } from 'storybook-xstate-addon';
+import { RenderMachine } from 'storybook-xstate-addon/RenderMachine';
 
 export const MachinePreview = () => <RenderMachine machine={confirmMachine} options={...optionsToUseMachine} events={[...events]} />;
 ```
