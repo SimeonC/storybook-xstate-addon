@@ -1,3 +1,15 @@
+# v1.0.2 (Fri Apr 02 2021)
+
+#### 🐛 Bug Fix
+
+- Correctly cleanup on unmount [#12](https://github.com/SimeonC/storybook-xstate-addon/pull/12) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.0.1 (Fri Apr 02 2021)
 
 #### 🐛 Bug Fix
