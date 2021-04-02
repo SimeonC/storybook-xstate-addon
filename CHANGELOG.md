@@ -1,3 +1,16 @@
+# v1.0.0 (Fri Apr 02 2021)
+
+#### 💥 Breaking Change
+
+- Update dependencies [#8](https://github.com/SimeonC/storybook-xstate-addon/pull/8) ([@SimeonC](https://github.com/SimeonC))
+- Fix export of RenderMachine [#8](https://github.com/SimeonC/storybook-xstate-addon/pull/8) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v0.1.0 (Mon Mar 22 2021)
 
 #### 🚀 Enhancement
