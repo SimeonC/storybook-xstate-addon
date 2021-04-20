@@ -79,6 +79,7 @@
   },
   "storybook": {
     "displayName": "Addon Kit",
+    "unsupportedFrameworks": [],
     "supportedFrameworks": [
       "react",
       "vue",

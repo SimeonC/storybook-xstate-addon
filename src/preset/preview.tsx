@@ -11,7 +11,7 @@ interface HandlerEvent extends Event {
   data?: any;
 }
 
-export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
+function XstateInspector({ children, context }: any) {
   const iframeRef = React.useRef<HTMLIFrameElement | null>(null);
 
   Interpreter.defaultOptions.devTools = true;
@@ -78,8 +78,14 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
         />,
         window.parent.document.querySelector(`#${INSPECT_ID}`)!
       )}
-      {StoryFn(context)}
+      {children}
     </>
+  );
+}
+
+export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
+  return (
+    <XstateInspector context={context}>{StoryFn(context)}</XstateInspector>
   );
 }
 
