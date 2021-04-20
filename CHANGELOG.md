@@ -1,3 +1,19 @@
+# v1.0.4 (Tue Apr 20 2021)
+
+#### 🐛 Bug Fix
+
+- fix error from wrapper [#16](https://github.com/SimeonC/storybook-xstate-addon/pull/16) ([@SimeonC](https://github.com/SimeonC))
+
+#### 📝 Documentation
+
+- chore: update deps to get docs working [#14](https://github.com/SimeonC/storybook-xstate-addon/pull/14) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.0.3 (Fri Apr 02 2021)
 
 #### 🐛 Bug Fix
