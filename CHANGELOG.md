@@ -1,3 +1,15 @@
+# v1.0.5 (Wed Apr 21 2021)
+
+#### 🐛 Bug Fix
+
+- Update package.json storybook icon to be the xstate one [#17](https://github.com/SimeonC/storybook-xstate-addon/pull/17) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.0.4 (Tue Apr 20 2021)
 
 #### 🐛 Bug Fix
