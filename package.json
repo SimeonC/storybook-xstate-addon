@@ -78,7 +78,7 @@
     "access": "public"
   },
   "storybook": {
-    "displayName": "Addon Kit",
+    "displayName": "XState Inspector",
     "unsupportedFrameworks": [],
     "supportedFrameworks": [
       "react",
