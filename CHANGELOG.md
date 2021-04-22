@@ -1,3 +1,15 @@
+# v1.0.6 (Thu Apr 22 2021)
+
+#### 🐛 Bug Fix
+
+- Update storybook meta-data [#18](https://github.com/SimeonC/storybook-xstate-addon/pull/18) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.0.5 (Wed Apr 21 2021)
 
 #### 🐛 Bug Fix
