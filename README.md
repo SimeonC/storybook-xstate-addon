@@ -4,6 +4,41 @@
 
 To use this in storybook simply add `addons: ["storybook-xstate-addon/preset"]` to your storybook config.
 
+If you want to enable the inspector in all stories, set the following in your `/.storybook/preview.js` file. With this setting on you can disable the inspector in certain stories
+
+```js
+export const parameters = {
+  xstate: true,
+};
+```
+
+To enable the inspector in a single story/stories file, set the xstate parameter to true or an options object.
+
+```jsx
+// this will turn on the inspector for all stories in the current file
+export default {
+  title: "Example",
+  parameters: {
+    xstate: true,
+  },
+};
+
+// this turns the inspector on for only a single story
+StoryComponent.parameters = {
+  xstate: true,
+};
+```
+
+To assist with viewing larger state charts, you can pass the `height` option in the xstate parameter to force the height of the inspector.
+
+```js
+StoryComponent.parameters = {
+  xstate: {
+    height: "1000px",
+  },
+};
+```
+
 Additionally, you can send events to a machine by id when it is registered by adding the `xstate` parameter.
 
 For more example usages see [./stories/Button.stories.tsx] and [./stories/Machines.stories.tsx].
@@ -32,21 +67,10 @@ StoryComponent.parameters = {
 };
 ```
 
-If you wish to use the Inspector as the main story itself, simply use the following snippet.
+If you wish to use the Inspector as the main story itself, simply use the following snippet (uses react).
 
 ```jsx
 import { RenderMachine } from 'storybook-xstate-addon/RenderMachine';
 
 export const MachinePreview = () => <RenderMachine machine={confirmMachine} options={...optionsToUseMachine} events={[...events]} />;
 ```
-
-### Development scripts
-
-- `npm run start` runs babel in watch mode and starts Storybook
-- `npm run build` build and package your addon code
-
-## Release Management
-
-### Setup
-
-This project is configured to use [auto](https://github.com/intuit/auto) for release management. It generates a changelog and pushes it to both GitHub and npm. Therefore, you need to configure access to both:

@@ -1,4 +1,10 @@
-import { EventObject, Interpreter, State, Typestate } from "xstate";
+import {
+  EventObject,
+  Interpreter,
+  InterpreterStatus,
+  State,
+  Typestate,
+} from "xstate";
 
 export type EventParam<
   TContext,
@@ -32,15 +38,20 @@ export function eventsHandler<
   delay: number = 0,
   shouldRepeat?: boolean
 ) {
+  function safeSend(
+    event: TEvent["type"] | TEvent | (TEvent["type"] | TEvent)[] | undefined
+  ) {
+    if (event && service.status === InterpreterStatus.Running) {
+      service.send(event);
+    }
+  }
   if (!events) return;
   switch (typeof events) {
     case "function":
       // this should trigger on the `xstate.init` event
       service.onTransition((state) => {
         setTimeout(() => {
-          Promise.resolve(events(state)).then((event) => {
-            if (event) service.send(event);
-          });
+          Promise.resolve(events(state)).then(safeSend);
         }, delay);
       });
       return;
@@ -48,9 +59,10 @@ export function eventsHandler<
       if (delay && Array.isArray(events)) {
         const popStack = [...events];
         service.onTransition(() => {
+          if (service.status !== InterpreterStatus.Running) return;
           setTimeout(() => {
             const event = popStack.shift();
-            if (event) service.send(event);
+            safeSend(event);
             if (!popStack.length && shouldRepeat) {
               popStack.push(...events);
             }
@@ -59,6 +71,6 @@ export function eventsHandler<
         return;
       }
     default:
-      service.send(events);
+      safeSend(events);
   }
 }

@@ -4,10 +4,13 @@ import { useMachine } from "@xstate/react";
 import { RenderMachine } from "../src/RenderMachine";
 
 export default {
-  title: "Example/MachinePreview",
+  title: "Example/Machine Preview",
+  parameters: {
+    xstate: false,
+  },
 };
 
-export const DevToolsWithUseMachine = () => {
+const UseMachine = () => {
   useMachine(confirmMachine);
   return (
     <div>
@@ -15,6 +18,11 @@ export const DevToolsWithUseMachine = () => {
       RenderMachine component
     </div>
   );
+};
+
+export const DevToolsWithUseMachine = () => <UseMachine />;
+DevToolsWithUseMachine.parameters = {
+  xstate: true,
 };
 
 export const MachinePreview = () => <RenderMachine machine={confirmMachine} />;

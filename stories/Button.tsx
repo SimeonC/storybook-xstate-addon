@@ -60,6 +60,7 @@ export function ConfirmDeleteButton({
     classes.push("storybook-button--primary");
   } else {
     classes.push("storybook-button--secondary");
+    classes.push("storybook-button--test");
   }
 
   return (
