@@ -1,3 +1,15 @@
+# v1.1.2 (Thu Apr 29 2021)
+
+#### 🐛 Bug Fix
+
+- General bugfixes [#22](https://github.com/SimeonC/storybook-xstate-addon/pull/22) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.1.1 (Thu Apr 29 2021)
 
 #### 🐛 Bug Fix
