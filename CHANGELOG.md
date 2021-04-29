@@ -1,3 +1,19 @@
+# v1.1.0 (Thu Apr 29 2021)
+
+#### 🚀 Enhancement
+
+- fix compatibility [#19](https://github.com/SimeonC/storybook-xstate-addon/pull/19) ([@SimeonC](https://github.com/SimeonC))
+
+#### 🐛 Bug Fix
+
+- fix dependencies [#20](https://github.com/SimeonC/storybook-xstate-addon/pull/20) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.0.6 (Thu Apr 22 2021)
 
 #### 🐛 Bug Fix
