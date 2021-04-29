@@ -16,6 +16,7 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
   if (context.parameters?.xstate) {
     Interpreter.defaultOptions.devTools = true;
   }
+  const global = getGlobal();
   const emit = useChannel({
     [EVENTS.START_INSPECT]: () => {
       const { xstate } = context.parameters || {};
@@ -41,22 +42,9 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
     },
   });
   if (context.parameters?.xstate) {
-    const { xstate } = context.parameters;
     Interpreter.defaultOptions.devTools = false;
     const devTools = createDevTools();
-    devTools.onRegister((newService) => {
-      if (typeof xstate === "object") {
-        const { events, delay, shouldRepeatEvents } =
-          context.parameters.xstate[newService.id] || {};
-        if (events) {
-          setTimeout(() => {
-            eventsHandler(newService, events, delay, shouldRepeatEvents);
-          });
-        }
-      }
-    });
 
-    const global = getGlobal();
     if (global) {
       // @ts-ignore
       global.__xstate__ = devTools;
@@ -74,8 +62,28 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
     }
     window.parent.addEventListener("message", handler);
 
+
+    const { xstate } = context.parameters || {};
+    let unsubscribe = () => {};
+    if (xstate && global) {
+      // @ts-ignore
+      ({ unsubscribe } = (global.__xstate__ as ReturnType<typeof createDevTools>).onRegister((newService) => {
+        if (typeof xstate === "object") {
+          const { events, delay, shouldRepeatEvents } =
+          context.parameters.xstate[newService.id] || {};
+          if (events) {
+            console.log("[debug]", "register events");
+            setTimeout(() => {
+              eventsHandler(newService, events, delay, shouldRepeatEvents);
+            });
+          }
+        }
+      }));
+    }
+
     // cleanup
     return () => {
+      unsubscribe();
       emit(EVENTS.RESET);
       window.parent.removeEventListener("message", handler);
       Interpreter.defaultOptions.devTools = false;

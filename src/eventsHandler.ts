@@ -46,11 +46,13 @@ export function eventsHandler<
     }
   }
   if (!events) return;
+  let timeout: any;
   switch (typeof events) {
     case "function":
       // this should trigger on the `xstate.init` event
       service.onTransition((state) => {
-        setTimeout(() => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
           Promise.resolve(events(state)).then(safeSend);
         }, delay);
       });
@@ -60,7 +62,8 @@ export function eventsHandler<
         const popStack = [...events];
         service.onTransition(() => {
           if (service.status !== InterpreterStatus.Running) return;
-          setTimeout(() => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => {
             const event = popStack.shift();
             safeSend(event);
             if (!popStack.length && shouldRepeat) {
