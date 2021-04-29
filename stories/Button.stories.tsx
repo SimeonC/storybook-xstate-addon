@@ -28,6 +28,7 @@ Button.args = {
 export const ButtonWithEvents = Template.bind({});
 ButtonWithEvents.parameters = {
   xstate: {
+    height: "1080px",
     [confirmMachine.id]: { events: [{ type: "CLICK" }] },
   },
 };
