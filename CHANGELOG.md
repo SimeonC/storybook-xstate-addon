@@ -1,3 +1,15 @@
+# v1.1.3 (Tue Jun 29 2021)
+
+#### ⚠️ Pushed to `main`
+
+- chore: update dependencies ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.1.2 (Thu Apr 29 2021)
 
 #### 🐛 Bug Fix
