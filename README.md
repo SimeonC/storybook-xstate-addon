@@ -2,6 +2,12 @@
 
 ![](./preview.png)
 
+### Installation
+
+`npm install -D @storybook/addons storybook-xstate-addon @xstate/inspect @xstate/react`
+
+### Usage
+
 To use this in storybook simply add `addons: ["storybook-xstate-addon/preset"]` to your storybook config.
 
 If you want to enable the inspector in all stories, set the following in your `/.storybook/preview.js` file. With this setting on you can disable the inspector in certain stories
