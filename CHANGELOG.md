@@ -1,3 +1,19 @@
+# v1.1.4 (Mon Aug 02 2021)
+
+#### 🐛 Bug Fix
+
+- Fix dependencies [#28](https://github.com/SimeonC/storybook-xstate-addon/pull/28) ([@SimeonC](https://github.com/SimeonC))
+
+#### 📝 Documentation
+
+- Fix docs generate [#25](https://github.com/SimeonC/storybook-xstate-addon/pull/25) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.1.3 (Tue Jun 29 2021)
 
 #### ⚠️ Pushed to `main`
