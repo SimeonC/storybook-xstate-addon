@@ -1,3 +1,15 @@
+# v1.1.5 (Tue Aug 03 2021)
+
+#### 🐛 Bug Fix
+
+- Fix peer deps to properly match storybooks [#29](https://github.com/SimeonC/storybook-xstate-addon/pull/29) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.1.4 (Mon Aug 02 2021)
 
 #### 🐛 Bug Fix
