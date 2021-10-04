@@ -29,6 +29,7 @@ interface Props<
   events?: Events;
   delay?: number;
   shouldRepeatEvents?: Events extends Array<unknown> ? boolean : never;
+  inspectUrl?: string;
 }
 
 export function RenderMachine<
@@ -44,6 +45,7 @@ export function RenderMachine<
   events,
   delay,
   shouldRepeatEvents,
+  inspectUrl,
 }: Props<TContext, TEvent, TTypestate>) {
   const iframeRef = React.useRef<HTMLIFrameElement | null>();
   const [, , service] = useMachine(machine, { ...options, devTools: true });
@@ -65,6 +67,7 @@ export function RenderMachine<
         });
         Interpreter.defaultOptions.devTools = false;
         inspect({
+          ...(inspectUrl && { url: inspectUrl }),
           iframe,
         });
         Interpreter.defaultOptions.devTools = true;
