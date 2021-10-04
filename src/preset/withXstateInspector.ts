@@ -19,7 +19,7 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
   const global = getGlobal();
   const emit = useChannel({
     [EVENTS.START_INSPECT]: () => {
-      const { xstate } = context.parameters || {};
+      const { xstate, inspectUrl } = context.parameters || {};
       if (!xstate) return;
       Interpreter.defaultOptions.devTools = false;
       const iframe = window.parent.document.body.querySelector<HTMLIFrameElement>(
@@ -32,6 +32,7 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
         return;
       }
       inspect({
+        ...(inspectUrl && { url: inspectUrl }),
         iframe,
         devTools,
       });
