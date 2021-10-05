@@ -1,3 +1,15 @@
+# v1.1.6 (Tue Oct 05 2021)
+
+#### 🐛 Bug Fix
+
+- Add inspectUrl parameter [#32](https://github.com/SimeonC/storybook-xstate-addon/pull/32) ([@maximblack](https://github.com/maximblack))
+
+#### Authors: 1
+
+- Ciornii Maxim ([@maximblack](https://github.com/maximblack))
+
+---
+
 # v1.1.5 (Tue Aug 03 2021)
 
 #### 🐛 Bug Fix
