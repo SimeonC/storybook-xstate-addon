@@ -26,6 +26,8 @@ export default {
   title: "Example",
   parameters: {
     xstate: true,
+    // this option is passed to the devTools instance to use a different inspector
+    inspectUrl: 'https://stately.ai/viz?inspect'
   },
 };
 
