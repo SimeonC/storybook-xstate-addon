@@ -1,3 +1,15 @@
+# v1.1.7 (Mon Nov 08 2021)
+
+#### 🐛 Bug Fix
+
+- docs: update README with new inspectUrl option [#33](https://github.com/SimeonC/storybook-xstate-addon/pull/33) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.1.6 (Tue Oct 05 2021)
 
 #### 🐛 Bug Fix
