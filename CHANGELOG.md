@@ -1,3 +1,15 @@
+# v1.1.8 (Mon Nov 15 2021)
+
+#### 🐛 Bug Fix
+
+- deps: bump xstate/inspect peer dep to include 0.5 version [#34](https://github.com/SimeonC/storybook-xstate-addon/pull/34) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.1.7 (Mon Nov 08 2021)
 
 #### 🐛 Bug Fix
