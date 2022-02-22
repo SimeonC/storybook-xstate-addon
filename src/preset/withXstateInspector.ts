@@ -19,12 +19,13 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
   const global = getGlobal();
   const emit = useChannel({
     [EVENTS.START_INSPECT]: () => {
-      const { xstate, inspectUrl } = context.parameters || {};
+      const { xstate, xstateInspectOptions } = context.parameters || {};
       if (!xstate) return;
       Interpreter.defaultOptions.devTools = false;
-      const iframe = window.parent.document.body.querySelector<HTMLIFrameElement>(
-        `iframe#${INSPECT_ID}`
-      );
+      const iframe =
+        window.parent.document.body.querySelector<HTMLIFrameElement>(
+          `iframe#${INSPECT_ID}`
+        );
       // @ts-ignore
       const devTools = global.__xstate__;
       if (!devTools || !iframe) {
@@ -32,7 +33,7 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
         return;
       }
       inspect({
-        ...(inspectUrl && { url: inspectUrl }),
+        ...(xstateInspectOptions || {}),
         iframe,
         devTools,
       });
@@ -63,17 +64,17 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
     }
     window.parent.addEventListener("message", handler);
 
-
     const { xstate } = context.parameters || {};
     let unsubscribe = () => {};
     if (xstate && global) {
       // @ts-ignore
-      ({ unsubscribe } = (global.__xstate__ as ReturnType<typeof createDevTools>).onRegister((newService) => {
+      ({ unsubscribe } = (
+        global as any as { __xstate__: ReturnType<typeof createDevTools> }
+      ).__xstate__.onRegister((newService) => {
         if (typeof xstate === "object") {
           const { events, delay, shouldRepeatEvents } =
-          context.parameters.xstate[newService.id] || {};
+            context.parameters.xstate[newService.id] || {};
           if (events) {
-            console.log("[debug]", "register events");
             setTimeout(() => {
               eventsHandler(newService, events, delay, shouldRepeatEvents);
             });

@@ -64,3 +64,17 @@ AutomaticButton.parameters = {
     },
   },
 };
+
+export const CustomSerializer = Template.bind({});
+CustomSerializer.parameters = {
+  xstate: {
+    height: "1080px",
+    [confirmMachine.id]: { events: [{ type: "CLICK", excludeValue: true }] },
+  },
+  xstateInspectOptions: {
+    serialize: (key: string, value: unknown) => {
+      if (key === "excludeValue") return "<<omitted>>";
+      return value;
+    },
+  },
+};
