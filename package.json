@@ -36,6 +36,9 @@
     "release": "npm run build && auto shipit"
   },
   "devDependencies": {
+    "@auto-it/all-contributors": "10.32.6",
+    "@auto-it/first-time-contributor": "10.32.6",
+    "@auto-it/released": "10.32.6",
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
@@ -50,12 +53,12 @@
     "babel-loader": "^8.2.3",
     "concurrently": "^7.0.0",
     "prettier": "^2.5.1",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.5.5",
-    "xstate": "^4.30.1",
-    "storybook": "^6.4.19",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "rimraf": "^3.0.2",
+    "storybook": "^6.4.19",
+    "typescript": "^4.5.5",
+    "xstate": "^4.30.1"
   },
   "peerDependencies": {
     "@storybook/addons": "^6.4.19",
@@ -65,10 +68,10 @@
     "@storybook/theming": "^6.4.19",
     "@xstate/inspect": "^0.6",
     "@xstate/react": "^2",
-    "storybook": "^6.4.19",
-    "xstate": "^4.18.0",
     "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react-dom": "^16.8.0 || ^17.0.0",
+    "storybook": "^6.4.19",
+    "xstate": "^4.18.0"
   },
   "publishConfig": {
     "access": "public"
@@ -82,5 +85,13 @@
       "angular"
     ],
     "icon": "https://user-images.githubusercontent.com/1093738/101672561-06aa7480-3a24-11eb-89d1-787fa7112138.png"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "all-contributors",
+      "first-time-contributor",
+      "released"
+    ]
   }
 }
