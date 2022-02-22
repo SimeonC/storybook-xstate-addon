@@ -1,3 +1,15 @@
+# v2.1.0 (Tue Feb 22 2022)
+
+#### 🚀 Enhancement
+
+- fix: add auto config and support npm release properly [#36](https://github.com/SimeonC/storybook-xstate-addon/pull/36) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v2.0.0 (Tue Feb 22 2022)
 
 #### 💥 Breaking Change
