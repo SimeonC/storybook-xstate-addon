@@ -1,3 +1,15 @@
+# v2.0.0 (Tue Feb 22 2022)
+
+#### 💥 Breaking Change
+
+- feat: support full inspect options in parameters [#35](https://github.com/SimeonC/storybook-xstate-addon/pull/35) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v1.1.8 (Mon Nov 15 2021)
 
 #### 🐛 Bug Fix
