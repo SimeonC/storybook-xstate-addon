@@ -3,22 +3,19 @@ import {
   Interpreter,
   InterpreterStatus,
   State,
-  Typestate,
+  StateMachine,
 } from "xstate";
 
 export type EventParam<
-  TContext,
-  TEvent extends EventObject,
-  TTypestate extends Typestate<TContext> = {
-    value: any;
-    context: TContext;
-  }
+  TMachine extends StateMachine<any, any, any, any, any, any, any>,
+  TEvent extends EventObject = TMachine["__TEvent"],
+  TContext = TMachine["__TContext"]
 > =
   | TEvent["type"]
   | TEvent
   | (TEvent["type"] | TEvent)[]
   | ((
-      state: State<TContext, TEvent, any, TTypestate>
+      state: State<TContext, TEvent, any, TMachine["__TTypestate"]>
     ) =>
       | undefined
       | TEvent
@@ -26,15 +23,12 @@ export type EventParam<
       | Promise<undefined | TEvent | TEvent["type"]>);
 
 export function eventsHandler<
-  TContext,
-  TEvent extends EventObject,
-  TTypestate extends Typestate<TContext> = {
-    value: any;
-    context: TContext;
-  }
+  TMachine extends StateMachine<any, any, any, any, any, any, any>,
+  TEvent extends EventObject = TMachine["__TEvent"],
+  TContext = TMachine["__TContext"]
 >(
-  service: Interpreter<TContext, any, TEvent, TTypestate>,
-  events?: EventParam<TContext, TEvent, TTypestate>,
+  service: Interpreter<TContext, any, TEvent, TMachine["__TTypestate"]>,
+  events?: EventParam<TMachine>,
   delay: number = 0,
   shouldRepeat?: boolean
 ) {
@@ -53,7 +47,7 @@ export function eventsHandler<
       service.onTransition((state) => {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
-          Promise.resolve(events(state)).then(safeSend);
+          Promise.resolve((events as Function)(state)).then(safeSend);
         }, delay);
       });
       return;

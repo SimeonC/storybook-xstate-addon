@@ -26,8 +26,11 @@ export default {
   title: "Example",
   parameters: {
     xstate: true,
-    // this option is passed to the devTools instance to use a different inspector
-    inspectUrl: 'https://stately.ai/viz?inspect'
+    // this option is passed to the inspect function
+    xstateInspectOptions: {
+      url: 'https://stately.ai/viz?inspect',
+      serialize: null
+    }
   },
 };
 
@@ -80,5 +83,5 @@ If you wish to use the Inspector as the main story itself, simply use the follow
 ```jsx
 import { RenderMachine } from 'storybook-xstate-addon/RenderMachine';
 
-export const MachinePreview = () => <RenderMachine machine={confirmMachine} options={...optionsToUseMachine} events={[...events]} />;
+export const MachinePreview = () => <RenderMachine machine={confirmMachine.withConfig({ ... })} events={[...events]} />;
 ```
