@@ -27,7 +27,13 @@ export function eventsHandler<
   TEvent extends EventObject = TMachine["__TEvent"],
   TContext = TMachine["__TContext"]
 >(
-  service: Interpreter<TContext, any, TEvent, TMachine["__TTypestate"]>,
+  service: Interpreter<
+    TContext,
+    any,
+    TEvent,
+    TMachine["__TTypestate"],
+    TMachine["__TResolvedTypesMeta"]
+  >,
   events?: EventParam<TMachine>,
   delay: number = 0,
   shouldRepeat?: boolean
