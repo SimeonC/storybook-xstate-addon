@@ -1,3 +1,15 @@
+# v2.2.0 (Mon May 02 2022)
+
+#### 🚀 Enhancement
+
+- fix: update config to export esm bundles [#38](https://github.com/SimeonC/storybook-xstate-addon/pull/38) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v2.1.0 (Tue Feb 22 2022)
 
 #### 🚀 Enhancement
