@@ -1,1 +1,1 @@
-module.exports = require("./dist/RenderMachine");
+module.exports = require("./dist/esm/RenderMachine");
