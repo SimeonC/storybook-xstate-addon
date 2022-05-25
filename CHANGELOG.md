@@ -1,3 +1,15 @@
+# v2.2.1 (Wed May 25 2022)
+
+#### 🐛 Bug Fix
+
+- fix: correct export for RenderMachine export [#40](https://github.com/SimeonC/storybook-xstate-addon/pull/40) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v2.2.0 (Mon May 02 2022)
 
 #### 🚀 Enhancement
