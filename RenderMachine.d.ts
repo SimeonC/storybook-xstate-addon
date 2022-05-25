@@ -1,1 +1,1 @@
-export * from "./dist/RenderMachine";
+export * from "./dist/ts/RenderMachine";
