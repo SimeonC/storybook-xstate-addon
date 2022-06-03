@@ -1,3 +1,19 @@
+# v2.2.2 (Fri Jun 03 2022)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Riccardo Forina ([@riccardo-forina](https://github.com/riccardo-forina)), for all your work!
+
+#### 🐛 Bug Fix
+
+- chore: widen peer dependencies [#41](https://github.com/SimeonC/storybook-xstate-addon/pull/41) ([@riccardo-forina](https://github.com/riccardo-forina))
+
+#### Authors: 1
+
+- Riccardo Forina ([@riccardo-forina](https://github.com/riccardo-forina))
+
+---
+
 # v2.2.1 (Wed May 25 2022)
 
 #### 🐛 Bug Fix
