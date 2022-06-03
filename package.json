@@ -69,9 +69,9 @@
     "@storybook/core-events": "^6.4.22",
     "@storybook/theming": "^6.4.22",
     "@xstate/inspect": "^0.6",
-    "@xstate/react": "^2",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0",
+    "@xstate/react": "^2 || ^3",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "storybook": "^6.4.19",
     "xstate": "^4.18.0"
   },
