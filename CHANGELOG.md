@@ -1,3 +1,15 @@
+# v2.3.0 (Wed Jul 06 2022)
+
+#### 🚀 Enhancement
+
+- fix: upgrade dependency versions [#43](https://github.com/SimeonC/storybook-xstate-addon/pull/43) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v2.2.2 (Fri Jun 03 2022)
 
 :tada: This release contains work from a new contributor! :tada:
