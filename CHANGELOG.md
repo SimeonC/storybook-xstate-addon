@@ -1,3 +1,15 @@
+# v2.3.1 (Wed Jul 06 2022)
+
+#### 🐛 Bug Fix
+
+- fix: catch errors in decorator startup [#44](https://github.com/SimeonC/storybook-xstate-addon/pull/44) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v2.3.0 (Wed Jul 06 2022)
 
 #### 🚀 Enhancement
