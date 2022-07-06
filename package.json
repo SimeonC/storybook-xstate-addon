@@ -30,12 +30,16 @@
     "buildBabel:esm": "babel ./src -d ./dist/esm --env-name esm --extensions \".js,.jsx,.ts,.tsx\"",
     "buildTsc": "tsc --declaration --emitDeclarationOnly --outDir ./dist/ts",
     "prebuild": "npm run clean",
+    "prepare": "husky install",
     "build": "concurrently \"npm run buildBabel\" \"npm run buildTsc\"",
     "build:watch": "concurrently \"npm run buildBabel:esm -- --watch\" \"npm run buildTsc -- --watch\"",
     "storybook": "start-storybook -p 6006",
     "start": "concurrently \"npm run build:watch\" \"npm run storybook -- --no-manager-cache --quiet\"",
     "build-storybook": "build-storybook",
-    "release": "npm run build && auto shipit"
+    "release": "npm run build && auto shipit",
+    "prettier": "prettier src/**/* stories/**/* .storybook/**/* *.js *.d.ts",
+    "check-format": "npm run prettier -- --check",
+    "format": "npm run prettier -- --write"
   },
   "devDependencies": {
     "@auto-it/all-contributors": "10.37.1",
@@ -54,6 +58,7 @@
     "auto": "10.37.1",
     "babel-loader": "8.2.5",
     "concurrently": "7.2.2",
+    "husky": "8.0.1",
     "prettier": "2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
