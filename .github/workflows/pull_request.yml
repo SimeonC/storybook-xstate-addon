@@ -1,0 +1,34 @@
+name: Pull Request Workflow
+
+on: [pull_request]
+
+concurrency:
+  # Here the group is defined by the head_ref of the PR
+  group: ${{ github.head_ref }}-checks
+  # Here we specify that we'll cancel any "in progress" workflow of the same group. Thus if we push, ammend a commit and push
+  # again the previous workflow will be cancelled, thus saving us github action build minutes and avoid any conflicts
+  cancel-in-progress: true
+
+jobs:
+  Checks:
+    runs-on: ubuntu-latest
+    outputs:
+      nvmrc: ${{ steps.nvm.outputs.nvmrc }}
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+
+      - name: Install 🔧
+        run: npm ci
+
+      - name: Check prettier formatting
+        run: npm run check-format
+
+      - name: Create Canary Release ✨
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm run release

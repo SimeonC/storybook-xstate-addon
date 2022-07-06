@@ -13,83 +13,92 @@ interface HandlerEvent extends Event {
 
 export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
   if (context.viewMode === "docs") return StoryFn(context);
-  if (context.parameters?.xstate) {
-    Interpreter.defaultOptions.devTools = true;
-  }
-  const global = getGlobal();
-  const emit = useChannel({
-    [EVENTS.START_INSPECT]: () => {
-      const { xstate, xstateInspectOptions } = context.parameters || {};
-      if (!xstate) return;
-      Interpreter.defaultOptions.devTools = false;
-      const iframe =
-        window.parent.document.body.querySelector<HTMLIFrameElement>(
-          `iframe#${INSPECT_ID}`
-        );
-      // @ts-ignore
-      const devTools = global.__xstate__;
-      if (!devTools || !iframe) {
-        emit(EVENTS.ERROR);
-        return;
-      }
-      inspect({
-        ...(xstateInspectOptions || {}),
-        iframe,
-        devTools,
-      });
+  try {
+    if (context.parameters?.xstate) {
       Interpreter.defaultOptions.devTools = true;
-      if (typeof xstate === "object" && xstate.height) {
-        emit(EVENTS.SET_HEIGHT, { height: `${xstate.height}` });
-      }
-    },
-  });
-  if (context.parameters?.xstate) {
-    Interpreter.defaultOptions.devTools = false;
-    const devTools = createDevTools();
-
-    if (global) {
-      // @ts-ignore
-      global.__xstate__ = devTools;
     }
-    emit(EVENTS.DEV_TOOLS);
-    Interpreter.defaultOptions.devTools = true;
-  } else {
-    emit(EVENTS.DISABLE);
-  }
-
-  useEffect(() => {
-    function handler(event: HandlerEvent) {
-      if (typeof event.data !== "object" || !("type" in event.data)) return;
-      window.postMessage(event.data, "*");
-    }
-    window.parent.addEventListener("message", handler);
-
-    const { xstate } = context.parameters || {};
-    let unsubscribe = () => {};
-    if (xstate && global) {
-      // @ts-ignore
-      ({ unsubscribe } = (
-        global as any as { __xstate__: ReturnType<typeof createDevTools> }
-      ).__xstate__.onRegister((newService) => {
-        if (typeof xstate === "object") {
-          const { events, delay, shouldRepeatEvents } =
-            context.parameters.xstate[newService.id] || {};
-          if (events) {
-            setTimeout(() => {
-              eventsHandler(newService, events, delay, shouldRepeatEvents);
-            });
-          }
+    const global = getGlobal();
+    const emit = useChannel({
+      [EVENTS.START_INSPECT]: () => {
+        const { xstate, xstateInspectOptions } = context.parameters || {};
+        if (!xstate) return;
+        Interpreter.defaultOptions.devTools = false;
+        const iframe =
+          window.parent.document.body.querySelector<HTMLIFrameElement>(
+            `iframe#${INSPECT_ID}`
+          );
+        // @ts-ignore
+        const devTools = global.__xstate__;
+        if (!devTools || !iframe) {
+          emit(EVENTS.ERROR);
+          return;
         }
-      }));
+        inspect({
+          ...(xstateInspectOptions || {}),
+          iframe,
+          devTools,
+        });
+        Interpreter.defaultOptions.devTools = true;
+        if (typeof xstate === "object" && xstate.height) {
+          emit(EVENTS.SET_HEIGHT, { height: `${xstate.height}` });
+        }
+      },
+    });
+    if (context.parameters?.xstate) {
+      Interpreter.defaultOptions.devTools = false;
+      const devTools = createDevTools();
+
+      if (global) {
+        // @ts-ignore
+        global.__xstate__ = devTools;
+      }
+      emit(EVENTS.DEV_TOOLS);
+      Interpreter.defaultOptions.devTools = true;
+    } else {
+      emit(EVENTS.DISABLE);
     }
 
-    // cleanup
-    return () => {
-      unsubscribe();
-      emit(EVENTS.RESET);
-      window.parent.removeEventListener("message", handler);
-      Interpreter.defaultOptions.devTools = false;
-    };
-  }, []);
-  return StoryFn(context);
+    useEffect(() => {
+      function handler(event: HandlerEvent) {
+        if (typeof event.data !== "object" || !("type" in event.data)) return;
+        window.postMessage(event.data, "*");
+      }
+      window.parent.addEventListener("message", handler);
+
+      const { xstate } = context.parameters || {};
+      let unsubscribe = () => {};
+      if (xstate && global) {
+        // @ts-ignore
+        ({ unsubscribe } = (
+          global as any as { __xstate__: ReturnType<typeof createDevTools> }
+        ).__xstate__.onRegister((newService) => {
+          if (typeof xstate === "object") {
+            const { events, delay, shouldRepeatEvents } =
+              context.parameters.xstate[newService.id] || {};
+            if (events) {
+              setTimeout(() => {
+                eventsHandler(newService, events, delay, shouldRepeatEvents);
+              });
+            }
+          }
+        }));
+      }
+
+      // cleanup
+      return () => {
+        unsubscribe();
+        emit(EVENTS.RESET);
+        window.parent.removeEventListener("message", handler);
+        Interpreter.defaultOptions.devTools = false;
+      };
+    }, []);
+    return StoryFn(context);
+  } catch (error) {
+    // catching errors that may occur when inside a strict environment, for example chromatic
+    const emit = useChannel({});
+    emit(EVENTS.ERROR);
+    console.error("Error occured in starting xstate inspector addon", error);
+    Interpreter.defaultOptions.devTools = false;
+    return StoryFn(context);
+  }
 }
