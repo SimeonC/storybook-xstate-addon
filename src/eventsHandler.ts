@@ -1,6 +1,6 @@
 import {
   EventObject,
-  Interpreter,
+  InterpreterFrom,
   InterpreterStatus,
   State,
   StateMachine,
@@ -24,16 +24,9 @@ export type EventParam<
 
 export function eventsHandler<
   TMachine extends StateMachine<any, any, any, any, any, any, any>,
-  TEvent extends EventObject = TMachine["__TEvent"],
-  TContext = TMachine["__TContext"]
+  TEvent extends EventObject = TMachine["__TEvent"]
 >(
-  service: Interpreter<
-    TContext,
-    any,
-    TEvent,
-    TMachine["__TTypestate"],
-    TMachine["__TResolvedTypesMeta"]
-  >,
+  service: InterpreterFrom<TMachine>,
   events?: EventParam<TMachine>,
   delay: number = 0,
   shouldRepeat?: boolean
