@@ -29,7 +29,6 @@ const inspectorMachine =
       on: {
         SET_HEIGHT: {
           actions: "setHeight",
-          target: "#Storybook Inspector Tab",
           internal: false,
         },
         ERROR: {
