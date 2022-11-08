@@ -1,4 +1,5 @@
 /* eslint-env browser */
+import { useState } from "react";
 import { useEffect } from "@storybook/addons";
 import { useChannel } from "@storybook/client-api";
 import { createDevTools, inspect } from "@xstate/inspect";
@@ -12,7 +13,10 @@ interface HandlerEvent extends Event {
 }
 
 export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
-  if (context.viewMode === "docs") return StoryFn(context);
+  const [rendered, setRendered] = useState(false);
+
+  if (context.viewMode === "docs" && rendered) return StoryFn(context);
+
   try {
     if (context.parameters?.xstate) {
       Interpreter.defaultOptions.devTools = true;
@@ -59,6 +63,8 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
     }
 
     useEffect(() => {
+      setRendered(true);
+
       function handler(event: HandlerEvent) {
         if (typeof event.data !== "object" || !("type" in event.data)) return;
         window.postMessage(event.data, "*");
