@@ -1,3 +1,23 @@
+# v2.3.1 (Tue Nov 08 2022)
+
+#### 🐛 Bug Fix
+
+- fix(storybook-inspector): remove SET_HEIGH event target [#47](https://github.com/SimeonC/storybook-xstate-addon/pull/47) (hchmimo@lacentrale.fr)
+- chore: remove unused constant [#47](https://github.com/SimeonC/storybook-xstate-addon/pull/47) (hchmimo@lacentrale.fr)
+- chore(gitignore): add .idea folder [#47](https://github.com/SimeonC/storybook-xstate-addon/pull/47) (hchmimo@lacentrale.fr)
+- fix: catch errors in decorator startup [#44](https://github.com/SimeonC/storybook-xstate-addon/pull/44) ([@SimeonC](https://github.com/SimeonC))
+
+#### ⚠️ Pushed to `main`
+
+- chore: add issue templates ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 2
+
+- Hakim Ch (hchmimo@lacentrale.fr)
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v2.3.0 (Wed Jul 06 2022)
 
 #### 🚀 Enhancement
