@@ -26,9 +26,3 @@ jobs:
 
       - name: Check prettier formatting
         run: npm run check-format
-
-      - name: Create Canary Release ✨
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm run release
