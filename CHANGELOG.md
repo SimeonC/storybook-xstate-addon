@@ -1,3 +1,31 @@
+# v2.3.1 (Wed Nov 09 2022)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Hakim ([@HakimCh](https://github.com/HakimCh)), for all your work!
+
+#### 🐛 Bug Fix
+
+- fix(storybook-inspector): avoid re-rendering the inspector when switching tabs [#48](https://github.com/SimeonC/storybook-xstate-addon/pull/48) ([@HakimCh](https://github.com/HakimCh))
+- chore: fix workflows [skip-ci] [#49](https://github.com/SimeonC/storybook-xstate-addon/pull/49) ([@SimeonC](https://github.com/SimeonC))
+- fix(storybook-inspector): remove SET_HEIGH event target [#47](https://github.com/SimeonC/storybook-xstate-addon/pull/47) (hchmimo@lacentrale.fr)
+- chore: remove unused constant [#47](https://github.com/SimeonC/storybook-xstate-addon/pull/47) (hchmimo@lacentrale.fr)
+- chore(gitignore): add .idea folder [#47](https://github.com/SimeonC/storybook-xstate-addon/pull/47) (hchmimo@lacentrale.fr)
+- fix: catch errors in decorator startup [#44](https://github.com/SimeonC/storybook-xstate-addon/pull/44) ([@SimeonC](https://github.com/SimeonC))
+
+#### ⚠️ Pushed to `main`
+
+- ci: fix release permissions ([@SimeonC](https://github.com/SimeonC))
+- chore: add issue templates ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 3
+
+- Hakim ([@HakimCh](https://github.com/HakimCh))
+- Hakim Ch (hchmimo@lacentrale.fr)
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v2.3.0 (Wed Jul 06 2022)
 
 #### 🚀 Enhancement
