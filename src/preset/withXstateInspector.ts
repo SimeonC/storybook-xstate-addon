@@ -1,5 +1,4 @@
 /* eslint-env browser */
-import { useState } from "react";
 import { useEffect } from "@storybook/addons";
 import { useChannel } from "@storybook/client-api";
 import { createDevTools, inspect } from "@xstate/inspect";
@@ -13,10 +12,6 @@ interface HandlerEvent extends Event {
 }
 
 export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
-  const [rendered, setRendered] = useState(false);
-
-  if (context.viewMode === "docs" && rendered) return StoryFn(context);
-
   try {
     if (context.parameters?.xstate) {
       Interpreter.defaultOptions.devTools = true;
@@ -48,14 +43,15 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
         }
       },
     });
+
     if (context.parameters?.xstate) {
       Interpreter.defaultOptions.devTools = false;
-      const devTools = createDevTools();
 
       if (global) {
         // @ts-ignore
-        global.__xstate__ = devTools;
+        global.__xstate__ = createDevTools();
       }
+
       emit(EVENTS.DEV_TOOLS);
       Interpreter.defaultOptions.devTools = true;
     } else {
@@ -63,7 +59,9 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
     }
 
     useEffect(() => {
-      setRendered(true);
+      if (context.viewMode === "docs") {
+        return;
+      }
 
       function handler(event: HandlerEvent) {
         if (typeof event.data !== "object" || !("type" in event.data)) return;
@@ -97,7 +95,8 @@ export function withXstateInspector(StoryFn: (arg0: any) => any, context: any) {
         window.parent.removeEventListener("message", handler);
         Interpreter.defaultOptions.devTools = false;
       };
-    }, []);
+    }, [context.viewMode]);
+
     return StoryFn(context);
   } catch (error) {
     // catching errors that may occur when inside a strict environment, for example chromatic
