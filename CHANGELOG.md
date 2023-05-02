@@ -1,3 +1,15 @@
+# v2.3.7 (Tue May 02 2023)
+
+#### 🐛 Bug Fix
+
+- fix(inspector): watch viewMode for change to avoir rerender [#53](https://github.com/SimeonC/storybook-xstate-addon/pull/53) ([@HakimCh](https://github.com/HakimCh))
+
+#### Authors: 1
+
+- Hakim Chmimo ([@HakimCh](https://github.com/HakimCh))
+
+---
+
 # v2.3.1 (Wed Nov 09 2022)
 
 :tada: This release contains work from a new contributor! :tada:
