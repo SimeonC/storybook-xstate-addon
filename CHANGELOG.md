@@ -1,3 +1,15 @@
+# v2.3.8 (Thu Jun 08 2023)
+
+#### 🐛 Bug Fix
+
+- fix: bump peer deps [#56](https://github.com/SimeonC/storybook-xstate-addon/pull/56) ([@SimeonC](https://github.com/SimeonC))
+
+#### Authors: 1
+
+- Simeon Cheeseman ([@SimeonC](https://github.com/SimeonC))
+
+---
+
 # v2.3.7 (Tue May 02 2023)
 
 #### 🐛 Bug Fix
