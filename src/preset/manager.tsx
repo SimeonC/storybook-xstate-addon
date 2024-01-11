@@ -10,8 +10,8 @@ addons.register(ADDON_ID, () => {
     type: types.PANEL,
     title: "xState Inspector",
     paramKey: "xstate",
-    render: ({ active, key }) => (
-      <AddonPanel active={!!active} key={key}>
+    render: ({ active }) => (
+      <AddonPanel active={!!active}>
         <XStateInspectorPanel />
       </AddonPanel>
     ),
