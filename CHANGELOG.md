@@ -1,3 +1,19 @@
+# v2.3.9 (Fri Jan 12 2024)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Luca Di Fazio ([@HighLiuk](https://github.com/HighLiuk)), for all your work!
+
+#### 🐛 Bug Fix
+
+- Remove deprecated key [#58](https://github.com/SimeonC/storybook-xstate-addon/pull/58) ([@HighLiuk](https://github.com/HighLiuk))
+
+#### Authors: 1
+
+- Luca Di Fazio ([@HighLiuk](https://github.com/HighLiuk))
+
+---
+
 # v2.3.8 (Thu Jun 08 2023)
 
 #### 🐛 Bug Fix
