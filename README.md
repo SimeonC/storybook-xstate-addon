@@ -1,3 +1,9 @@
+# Not Maintained
+
+Thanks for everyone who used this, I personally don't use storybook anymore and hence have no reason to maintain this.
+
+If anyone would like to make a fork of this and continue working on it feel free - don't need to even ask!
+
 # xState Storybook Addon
 
 ![](./preview.png)
